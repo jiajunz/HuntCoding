@@ -10,6 +10,8 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'jquery-ace-rails'
+gem 'unicorn'
+gem "newrelic_rpm", "~> 3.5.7.57.beta"
 
 
 group :development, :test do

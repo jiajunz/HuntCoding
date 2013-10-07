@@ -3,7 +3,6 @@
  <hr>
  <p>
   <%= @problem.description.html_safe %>
-  <%= @problem.stub %>
  </p>
 <%= form_for(:submission, url: submission_path) do |f| %>
       <%= f.label :"type your java code below" %>
