@@ -1,0 +1,17 @@
+<div class="container">
+ <h3> <%= @problem.title %> </h3> 
+ <hr>
+ <p>
+  <%= @problem.description.html_safe %>
+  <%= @problem.stub %>
+ </p>
+<%= form_for(:submission, url: submission_path) do |f| %>
+      <%= f.label :"type your java code below" %>
+      <%= f.text_area :code, value:@problem.stub, class:"my-code-area", rows: "20", style:"witdh:100%",placeholder: "test" %>
+      <hr>
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+<script>
+  $('.my-code-area').ace({ theme: 'chrome', lang: 'java', initialContent:"stub" })
+</script>

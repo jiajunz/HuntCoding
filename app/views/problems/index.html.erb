@@ -1,0 +1,30 @@
+<% provide(:title, 'All users') %>
+<div class="container">
+<h1>All Problems</h1>
+<table class="table">
+<thead>
+	<tr>
+	<th> Title </th>
+	<th> Add Date </th>
+	<th> Difficult </th>
+	<th> Rates </th>
+	<%if current_user&&current_user.coreuser %>
+	<th> Delete </th>
+	<% end %>
+</thead>
+<tbody>
+<% @problems.each do |p| %>
+<tr>
+<td><%= link_to p.title, newsub_path(p.id) %></td>
+<td><%= p.created_at %></td>
+<td><%= p.level %></td>
+<td>NA</td>
+<%if current_user&&current_user.coreuser %>
+<th> <%= link_to "delete", problem_path(p.id), method:"delete" %> </th>
+<% end %>
+</tr>
+<% end %>
+</tbody>
+</table>
+<%= will_paginate %>
+</div>

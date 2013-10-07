@@ -1,0 +1,18 @@
+<% provide(:title, 'Create New Problem') %>
+<h1>Create New Problem</h1>
+<div class="row">
+	<div class="span6 offset3">
+		<%=form_for(@problem, url:problems_path) do |f| %>
+		<%= render 'shared/error_messages' %>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+		<%= f.label :description %>
+		<%= f.text_area :description %>
+		<%= f.label :testrunner %>
+		<%= f.text_area :testrunner %>
+		<%= f.label :stub %>
+		<%= f.text_area :stub %>
+		<%= f.submit "Create New Problem", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

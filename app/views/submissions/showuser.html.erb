@@ -1,0 +1,24 @@
+<% provide(:title, 'All users') %>
+<div class="container">
+<h1>All My Submissions</h1>
+<table class="table">
+<thead>
+	<tr>
+	<th> Submission Time </th>
+	<th> Problem </th>
+	<th> Result </th>
+	<th> Run Time </th>
+</thead>
+<tbody>
+<% @submissions.each do |s| %>
+<tr>
+<td><%= s.created_at %></td>
+<td><%= OjProblem.find(s.ojproblem_id).title %></td>
+<td><%= s.result %></td>
+<td>NA</td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<%= will_paginate %>
+</div>

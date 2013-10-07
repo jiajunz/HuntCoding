@@ -1,0 +1,6 @@
+ <% @problems.each do |p| %>
+<li>
+<%= p.title %>
+</li>
+<%= link_to "Try!", new_submission_path+'/'+p.id.to_s %>
+<% end %>
