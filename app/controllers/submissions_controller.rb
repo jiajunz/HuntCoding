@@ -1,4 +1,6 @@
 class SubmissionsController < ApplicationController
+	before_action :correct_submitter, only: [:show]
+	before_action :signed_in_user, only: [:show, :showuser]
 	def new
 		@problem = OjProblem.find(params[:id])
 	end
@@ -15,6 +17,12 @@ class SubmissionsController < ApplicationController
 	end
 
 	def showuser
-		@submissions = User.find(params[:user_id]).submissions.paginate(page:params[:page])
+		@submissions = current_user.submissions.paginate(page:params[:page])
+	end
+
+	private
+	def correct_submitter
+		@submission = Submission.find(params[:id])
+		redirect_to subuser_path(@submission.user_id) unless @submission.user_id == current_user.id
 	end
 end

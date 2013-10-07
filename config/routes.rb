@@ -14,7 +14,7 @@ Jjywebsite::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via:'delete'
   match '/submissions/new/:id', to: 'submissions#new', via:'get', as: :newsub
   match '/submissions/:id', to: 'submissions#create', via: 'post'
-  get '/submission/:user_id', to: 'submissions#showuser', as: :subuser
+  get '/submission/', to: 'submissions#showuser', as: :subuser
 
   
   # The priority is based upon order of creation: first created -> highest priority.

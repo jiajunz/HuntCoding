@@ -14,7 +14,7 @@
 <tr>
 <td><%= s.created_at %></td>
 <td><%= OjProblem.find(s.ojproblem_id).title %></td>
-<td><%= s.result %></td>
+<td><%= link_to s.result, submission_path(s.id) %></td>
 <td>NA</td>
 </tr>
 <% end %>
