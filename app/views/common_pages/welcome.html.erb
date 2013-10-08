@@ -1,7 +1,8 @@
 <div class="welcome-container">
-
-<%= image_tag "rpbridge.jpg", class:"bg" %> 
-<section class="form-signin welcome-signup welcome-signup-bg">
+<div class="front-bg">
+<%=image_tag "bg.jpg" %>
+</div>
+<div class="form-signin welcome-signup welcome-signup-bg">
 		<h4>New? Sign up</h4>
 		<hr>
 		<%=form_for(@user) do |f| %>
@@ -12,7 +13,7 @@
 		<%= f.password_field :password_confirmation, class: "input_medium", placeholder: "confirmation"%>
 		<%= f.submit "Create a new account", class: "btn btn-success " %>
 		<% end %>
-</section>
+</div>
 <div class="lph">
 	<em><p> Love, Peace and Happy Coding </p></em>
 </div>

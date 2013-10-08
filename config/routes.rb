@@ -8,7 +8,7 @@ Jjywebsite::Application.routes.draw do
   resources :problems, only: [:index, :show, :new, :create,:destroy]
   resources :submissions, only: [:new, :create, :show, :index]
   get "common_pages/welcome"
-  match '/home', to:'common_pages#home', via:'get' 
+  get "common_pages/home"
   match '/signup', to: 'users#new', via:'get'
   match '/signin', to: 'sessions#new', via:'get'
   match '/signout', to: 'sessions#destroy', via:'delete'
