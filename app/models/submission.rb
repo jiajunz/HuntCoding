@@ -16,7 +16,7 @@ class Submission < ActiveRecord::Base
 		`cp #{driverFileOrig.to_s} #{driverFile.to_s}`
 		compile = `javac #{driverFile.to_s} #{testRunnerFile.to_s} #{solutionFile.to_s} 2>&1`
 		if compile.blank?
-		   if code.index("import") >= 0
+		   if !code.index("import").nil? && code.index("import") >= 0
 		   	  test_result = "for now do not support import"
 		   else
 		      test_result = `cd #{tmp.to_s}; java OJFrameWork 2>&1`
