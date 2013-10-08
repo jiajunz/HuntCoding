@@ -33,6 +33,6 @@ class Submission < ActiveRecord::Base
 		   self.update(result: "Compile Failed", result_detail: details)
 		end
 	end
-	#handle_asynchronously :judge
+	handle_asynchronously :judge
 end
 
