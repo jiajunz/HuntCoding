@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require google-code-prettify/prettify.js
+//= require google-code-prettify/run_prettify.js
 //= require_tree .
 //= require bootstrap
 //= require ace/ace
@@ -20,3 +22,4 @@
 //= require ace/theme-chrome
 //= require ace/mode-java
 //= require jquery-ace.min
+

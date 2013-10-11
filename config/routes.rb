@@ -14,6 +14,7 @@ Jjywebsite::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via:'delete'
   match '/submissions/new/:id', to: 'submissions#new', via:'get', as: :newsub
   match '/submissions/:id', to: 'submissions#create', via: 'post'
+  match '/mysubmission/:id', to: 'submissions#showmysub', via:'get', as: :mysub
   get '/submission/', to: 'submissions#showuser', as: :subuser
 
   

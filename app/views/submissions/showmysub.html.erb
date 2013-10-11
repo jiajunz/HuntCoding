@@ -1,0 +1,13 @@
+<div class="container">
+Show My Sub
+<% @solvedproblem.submissions.each do |s| %>
+<div class="shadow">
+<%= link_to "submission", "#" %>
+<pre class="prettyprint"><%= s.code %></pre>
+</div>
+<% end %> 
+</div>
+<script>
+	prettyPrint();
+	//alert("good")
+</script>

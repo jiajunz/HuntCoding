@@ -8,6 +8,7 @@
 	<th> Add Date </th>
 	<th> Difficult </th>
 	<th> Rates </th>
+	<th> My Submissions </th>
 	<%if current_user&&current_user.coreuser %>
 	<th> Delete </th>
 	<% end %>
@@ -19,6 +20,12 @@
 <td><%= p.created_at %></td>
 <td><%= p.level %></td>
 <td>NA</td>
+<td><%if current_user.get_solved_problem p.id%>
+	<%=link_to "View Submissions", mysub_path(p.id) %>
+	<% else %>
+	"TRY"
+	<% end %>
+</td>
 <%if current_user&&current_user.coreuser %>
 <th> <%= link_to "delete", problem_path(p.id), method:"delete" %> </th>
 <% end %>

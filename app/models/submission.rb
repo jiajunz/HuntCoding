@@ -1,6 +1,7 @@
 class Submission < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :oj_problem
+	belongs_to :solvedproblem
 	default_scope -> { order('created_at DESC')}
 	validates :user_id, presence: true
 	validates :oj_problem_id, presence: true

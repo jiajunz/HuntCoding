@@ -4,12 +4,21 @@ class SubmissionsController < ApplicationController
 	def new
 		@problem = OjProblem.find(params[:id])
 	end
+
 	def create
-		@submission = Submission.new(code: params[:submission][:code], ojproblem_id: params[:id], oj_problem_id: params[:id], user_id: current_user.id, result: "Pending")
-		if @submission.save 
-			@submission.judge
-			redirect_to @submission
-		end
+			solvedproblem = Solvedproblem.where(user_id:current_user.id).where(oj_problem_id: params[:id]).first
+			if solvedproblem.nil?
+				solvedproblem = current_user.solvedproblems.create(oj_problem_id:params[:id])
+				@submission = solvedproblem.submissions.create(code: params[:submission][:code], ojproblem_id: params[:id], oj_problem_id: params[:id], result: "Pending",user_id:current_user.id)
+			else
+				@submission = solvedproblem.submissions.create(code: params[:submission][:code], ojproblem_id: params[:id], oj_problem_id: params[:id], result: "Pending",user_id:current_user.id)			
+				solvedproblem.submissions << @submission
+				solvedproblem.save
+			end
+		    if @submission.save 
+				@submission.judge
+				redirect_to @submission
+			end
 	end
 
 	def show
@@ -18,6 +27,10 @@ class SubmissionsController < ApplicationController
 
 	def showuser
 		@submissions = current_user.submissions.paginate(page:params[:page])
+	end
+
+	def showmysub
+		@solvedproblem = Solvedproblem.where(user_id:current_user.id).where(oj_problem_id:params[:id]).first
 	end
 
 	private

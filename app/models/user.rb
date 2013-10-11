@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :submissions
+	has_many :solvedproblems
+	has_many :submissions, through: :solvedproblems
 	before_save {self.email = email.downcase}
 	validates :username, presence: true, length: {maximum:50}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -15,6 +16,10 @@ class User < ActiveRecord::Base
 
 	def User.encrypt(token)
 		Digest::SHA1.hexdigest(token.to_s)
+	end
+
+	def get_solved_problem(pid)
+		Solvedproblem.where(user_id:self.id).where(oj_problem_id: pid).first
 	end
 
 	private
