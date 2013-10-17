@@ -186,6 +186,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-ace-rails
   jquery-rails
+  json
   newrelic_rpm (~> 3.5.7.57.beta)
   pg (= 0.15.1)
   rails (= 4.0.0)

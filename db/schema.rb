@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009095930) do
+ActiveRecord::Schema.define(version: 20131016043736) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20131009095930) do
     t.integer  "oj_problem_id"
     t.text     "result_detail"
     t.integer  "solvedproblem_id"
+    t.integer  "pass"
+    t.integer  "total"
   end
 
   add_index "submissions", ["oj_problem_id", "created_at"], name: "index_submissions_on_oj_problem_id_and_created_at"

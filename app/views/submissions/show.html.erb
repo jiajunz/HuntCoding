@@ -1,18 +1,36 @@
+<% success_perc = @submission.pass*100/@submission.total %>
+<% fail_perc = 100 - success_perc %>
+<% content_for :head do %>
+	<%= javascript_include_tag 'submission' %>
+<% end %>
+
 <div class="container">
-	<h1> Submission </h1>
-	<div class="span10">
+	<div class="span8">
+		<h3> Submission </h3>
+		<p> <%= @submission.oj_problem.title %> </p>
+		<h4> Description: <span class="show-description">hide</span></h4>
+		<p class="problem-description"> <%= @submission.oj_problem.description %></p>
 		<div class="row">
 			<div class="span2">
-				<h3> Result: </h3>
+				<h4> Result: </h4>
 				<%= @submission.result %>
 			</div>
-			<div class="span8">
-				<h3> Output: </h3>
-				<%= @submission.result_detail %>
+			<div class="span5">
+				<h4> Pass/Fail: </h4>
+				<% if @submission.result == "Pending" %>
+				<div class = "progress progress-striped active">
+					<div class="bar" style="width: 100%;">pending</div>
+				</div>
+				<% else %>
+				<div class = "progress">
+					<div class="bar bar-success" style="width: <%= success_perc %>%;">1</div>
+					<div class="bar bar-danger" style="width: <%= fail_perc %>%;">7</div>
+				</div>
+				<% end %>
 			</div>
 		</div>
-		<h3> Submitted Code: </h3>
-		<pre class="prettyprint shadow">
+		<h4> View Submitted Code: </h4>
+		<pre class="prettyprint shadow submitted_code">
 		<%= @submission.code %>
 	    </pre>
 	</div>

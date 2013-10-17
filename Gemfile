@@ -12,6 +12,7 @@ gem 'daemons'
 gem 'jquery-ace-rails'
 gem 'unicorn'
 gem "newrelic_rpm", "~> 3.5.7.57.beta"
+gem 'json'
 
 
 group :development, :test do

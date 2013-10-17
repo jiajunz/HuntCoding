@@ -15,12 +15,19 @@
 </thead>
 <tbody>
 <% @problems.each do |p| %>
+<% sp = current_user.get_solved_problem p.id %>
 <tr>
-<td><%= link_to p.title, newsub_path(p.id) %></td>
+<td><%= link_to p.title, newsub_path(p.id) %> 
+	<%if sp && sp.solved %>
+	<span class="label label-success">Passed</span>
+	<% elsif sp && sp.solved == false %>
+	<span class="label label-info">Retry</span>
+	<% end %>
+</td>
 <td><%= p.created_at %></td>
 <td><%= p.level %></td>
 <td>NA</td>
-<td><%if current_user.get_solved_problem p.id%>
+<td><%if sp %>
 	<%=link_to "View Submissions", mysub_path(p.id) %>
 	<% else %>
 	"TRY"
