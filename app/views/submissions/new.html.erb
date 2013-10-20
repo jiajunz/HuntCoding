@@ -1,16 +1,45 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'submission' %>
+<% end %>
+
 <div class="container">
  <h3> <%= @problem.title %> </h3> 
  <hr>
  <p>
-  <%= @problem.description.html_safe %>
+ Description</br>
+ <%= @problem.description.html_safe %>
  </p>
+ <hr>
+ <div>
+ Choose Your Language
+ <span class="btn-group hc-select-button-group">
+  <button id="hc-select-active", class="btn btn-small btn-info">java</button>
+  <button class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu hc-select-button">
+    <button class="hc-select-inactive btn btn-small btn-info">python</button>
+  </ul>
+</span>
+</div>
+<hr>
+<div id="hc-coding-panel-java">
 <%= form_for(:submission, url: submission_path) do |f| %>
+	 
       <%= f.label :"type your java code below" %>
-      <%= f.text_area :code, value:@problem.stub, class:"my-code-area", rows: "20", style:"witdh:100%",placeholder: "test" %>
+      <%= f.text_field :language, value:"java",type:"hidden" %>
+      <%= f.text_area :code, value:@problem.stub, class:"my-code-area", rows: "20",placeholder: "test" %>
       <hr>
       <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 <% end %>
 </div>
-<script>
-  $('.my-code-area').ace({ theme: 'chrome', lang: 'java', initialContent:"stub" })
-</script>
+<div id="hc-coding-panel-python">
+<%= form_for(:submission, url: submission_path) do |f| %>
+      <%= f.label :"type your python code below" %>
+      <%= f.text_field :language, value:"python",type:"hidden" %>
+      <%= f.text_area :code, value:@problem.pythonstub, class:"my-code-area", rows: "20",placeholder: "test" %>
+      <hr>
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+</div>

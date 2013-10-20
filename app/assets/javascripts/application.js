@@ -20,5 +20,6 @@
 //= require ace/theme-textmate
 //= require ace/theme-chrome
 //= require ace/mode-java
+//= require ace/mode-python
 //= require jquery-ace.min
 

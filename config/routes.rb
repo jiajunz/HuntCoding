@@ -1,7 +1,16 @@
 Jjywebsite::Application.routes.draw do
+  devise_for :admin_users
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+ 
+  devise_scope :admin_user do
+      post "sessions/admin_user" => "devise/sessions#create"
+  end
+
   get "sessions/new"
   get "sessions/create"
   get "sessions/destroy"
+
   root 'common_pages#welcome'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -15,7 +24,7 @@ Jjywebsite::Application.routes.draw do
   match '/submissions/new/:id', to: 'submissions#new', via:'get', as: :newsub
   match '/submissions/:id', to: 'submissions#create', via: 'post'
   match '/mysubmission/:id', to: 'submissions#showmysub', via:'get', as: :mysub
-  get '/submission/', to: 'submissions#showuser', as: :subuser
+  get   '/submission/', to: 'submissions#showuser', as: :subuser
 
   
   # The priority is based upon order of creation: first created -> highest priority.

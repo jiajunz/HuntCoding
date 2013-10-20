@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016043736) do
+ActiveRecord::Schema.define(version: 20131020011136) do
+
+  create_table "admin_users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -40,7 +58,22 @@ ActiveRecord::Schema.define(version: 20131016043736) do
     t.datetime "updated_at"
     t.text     "testrunner"
     t.text     "stub"
+    t.text     "pythontest"
+    t.text     "pythonstub"
   end
+
+  create_table "rails_admin_histories", force: true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      limit: 2
+    t.integer  "year",       limit: 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
   create_table "solvedproblems", force: true do |t|
     t.integer  "oj_problem_id"
@@ -67,11 +100,13 @@ ActiveRecord::Schema.define(version: 20131016043736) do
     t.integer  "solvedproblem_id"
     t.integer  "pass"
     t.integer  "total"
+    t.string   "language"
   end
 
   add_index "submissions", ["oj_problem_id", "created_at"], name: "index_submissions_on_oj_problem_id_and_created_at"
   add_index "submissions", ["ojproblem_id", "created_at"], name: "index_submissions_on_ojproblem_id_and_created_at"
   add_index "submissions", ["solvedproblem_id"], name: "index_submissions_on_solvedproblem_id"
+  add_index "submissions", ["user_id", "created_at"], name: "index_submissions_on_user_id_and_created_at"
 
   create_table "users", force: true do |t|
     t.string   "username"

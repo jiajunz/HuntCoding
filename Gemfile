@@ -13,7 +13,7 @@ gem 'jquery-ace-rails'
 gem 'unicorn'
 gem "newrelic_rpm", "~> 3.5.7.57.beta"
 gem 'json'
-
+gem 'rails_admin'
 
 group :development, :test do
 # Use sqlite3 as the database for Active Record
@@ -71,3 +71,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+gem "devise"

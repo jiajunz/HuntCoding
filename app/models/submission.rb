@@ -10,11 +10,22 @@ class Submission < ActiveRecord::Base
 	def judge
 		# create a submission directory if not exist
 		submdir = Rails.root.join('tmp/submission'+self.id.to_s)
-		dir = File.join(submdir,'/com/huntcoding')
+		if language == "java"
+			judge_java(submdir)
+		elsif language == "python"
+			judge_python(submdir)
+		end
+		# remove the submission folder
+		FileUtils.rm_rf(submdir)
+	end
+	handle_asynchronously :judge
+
+	private
+	  def judge_java(submdir)
+	  	dir = File.join(submdir,'/com/huntcoding')
 		unless File.directory?(dir)
 			FileUtils.mkdir_p(dir)
 		end
-
 		# copy the required files from db to the tmp folder
 		hcstaticfiles_dir = Rails.root.join('lib/huntcoding/')
 		FileUtils.cp_r Dir.glob(hcstaticfiles_dir.to_s+'*.java'), dir
@@ -62,10 +73,33 @@ class Submission < ActiveRecord::Base
 		   details = compile[ind,end_index]
 		   self.update(result: "Compile Failed", result_detail: details)
 		end
+	  end
 
-		# remove the submission folder
-		FileUtils.rm_rf(submdir)
-	end
-	handle_asynchronously :judge
+	  def judge_python(submdir)
+	  	# copy the required files from db to the tmp folder
+	  	# 
+	  	unless File.directory?(submdir)
+			FileUtils.mkdir_p(submdir)
+		end
+	  	pythonfiles_dir = Rails.root.join('lib/huntcoding/python/')
+	  	FileUtils.cp_r Dir.glob(pythonfiles_dir.to_s+'*.py'), submdir
+	  	testFile = File.join(submdir, 'Test.py')
+	  	File.write(testFile, OjProblem.find(ojproblem_id).pythontest)
+	  	solutionFile = File.join(submdir, 'usercode')
+	  	File.write(solutionFile, code)
+	  	# run
+	  	json_result_str = `cd #{submdir.to_s}; python HCDriver.py 2>&1`
+	  	p json_result_str
+	  	json_result = JSON.parse(json_result_str)
+		   result = json_result["result"]
+		   passed = json_result["passed"]
+		   total = json_result["total"]
+		   details = json_result["details"]
+		   if result == "Passed"
+		   	  self.solvedproblem.update(solved: true)
+		   end
+		   self.update(result: result, result_detail: details, pass: passed, total: total)
+	  end
+
 end
 

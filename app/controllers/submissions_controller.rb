@@ -9,9 +9,9 @@ class SubmissionsController < ApplicationController
 			solvedproblem = Solvedproblem.where(user_id:current_user.id).where(oj_problem_id: params[:id]).first
 			if solvedproblem.nil?
 				solvedproblem = current_user.solvedproblems.create(oj_problem_id:params[:id])
-				@submission = solvedproblem.submissions.create(code: params[:submission][:code], ojproblem_id: params[:id], oj_problem_id: params[:id], result: "Pending",user_id:current_user.id, pass:0,total:1)
+				@submission = solvedproblem.submissions.create(code: params[:submission][:code], ojproblem_id: params[:id], oj_problem_id: params[:id], result: "Pending",user_id:current_user.id, pass:0,total:1,language: params[:submission][:language])
 			else
-				@submission = solvedproblem.submissions.create(code: params[:submission][:code], ojproblem_id: params[:id], oj_problem_id: params[:id], result: "Pending",user_id:current_user.id, pass:0,total:1)			
+				@submission = solvedproblem.submissions.create(code: params[:submission][:code], ojproblem_id: params[:id], oj_problem_id: params[:id], result: "Pending",user_id:current_user.id, pass:0,total:1,language: params[:submission][:language])			
 				solvedproblem.submissions << @submission
 				solvedproblem.save
 			end
