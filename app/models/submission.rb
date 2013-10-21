@@ -18,7 +18,7 @@ class Submission < ActiveRecord::Base
 		# remove the submission folder
 		FileUtils.rm_rf(submdir)
 	end
-	#handle_asynchronously :judge
+	handle_asynchronously :judge
 
 	private
 	  def judge_java(submdir)
