@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Release</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="release-body">
+<div class="release-container shadow">
+<h1>HuntCoding</h1>
+<p class="release-small">Release</p>
+<hr>
+<div class="release-content">
+<h3>Version 0.2 </h3>
+<p>Sun, 20 Oct 2013 </p>
+<p class="summary">Add Python Support, Various Improvements On UI</p>
+<ul>
+<li> 增加了python作为解题语言的支持 </li>
+<li> 优化了编程界面 </li>
+<li> 优化了编程判定的结果输出，对于错的答案，可以显示通过的测试的数目和失败的测试用例</li>
+<li> 增加了Release界面 </li>
+<li> 增强了java解题判定的安全性 </li>
+<li> 优化了欢迎界面 </li>
+<li> 增加了对于某一道题目，查看有没有解决过的功能，支持显示对于某一道题目的曾经所有的提交 </li>
+</ul>
+</div>
+<hr>
+<div class="release-content">
+<h3>Version 0.1 </h3>
+<p>Mon, 7 Oct 2013 </p>
+<p class="summary">Launched</p>
+<ul>
+<li> 发布！</li>
+<li> 支持java作为编程语言 </li>
+</ul>
+</div>
+</div>
+<script>
+ var colors = new Array("#DD172C","#F9A600","#0047F1","#00930E","#E61B31"); // red, green, blue
+ var logo = $("div.release-container > h1");
+ var logoletters = logo.html();
+ var coloredhtml="";
+ for (var i = 0; i < logo.html().length; i++) {
+ 	color_index = Math.floor((Math.random()*colors.length));
+ 	coloredhtml += "<span style=\"color:" + colors[color_index] + ";\">" + logoletters[i] + "</span>"
+ }
+ logo.html(coloredhtml);
+</script>
+</body>
+</html>

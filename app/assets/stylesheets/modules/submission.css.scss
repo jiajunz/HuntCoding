@@ -1,0 +1,32 @@
+@import url(http://fonts.googleapis.com/css?family=Domine);
+.submission-page {
+	max-width:800px;
+	padding-top:20px;
+	h3 {
+	    font-family: 'Domine', serif;
+	    font-size: large;
+	}
+	h4 {
+		font-family: 'Domine', serif;
+		font-size: medium;
+	}
+	.show-description {
+		font-size: 10px;
+	}
+	label {
+		margin-bottom: 20px;
+	}
+}
+
+.all-problems {
+	max-width: 800px;
+	h1 {
+		font-family: 'Domine', serif;
+	}
+}
+.showsub {
+   max-width: 800px;
+   h3 {
+		font-family: 'Domine', serif;
+	}
+}

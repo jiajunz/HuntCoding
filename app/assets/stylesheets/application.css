@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require google-code-prettify/prettify.css
+ *= require google-code-prettify/dark.css
  *= require_tree .
  */

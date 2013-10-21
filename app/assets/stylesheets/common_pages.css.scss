@@ -1,6 +1,9 @@
 // Place all the styles related to the CommonPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// 
+@import url(http://fonts.googleapis.com/css?family=Cherry+Swash);
+@import url(http://fonts.googleapis.com/css?family=Buenard);
 .front-bg {
 }
 
@@ -27,6 +30,13 @@
 }
 .welcome-container {
 	position:relative;
+	min-height: 100%;
+	background: url(/assets/rpbridge.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
 
 .welcome-form {
@@ -62,4 +72,34 @@ border-left: 1px solid #eee;
 border-right: 1px solid #eee;
 -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.1);
 box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+}
+
+.welcome-footer {
+    position:fixed;
+    bottom:0;
+    width:auto;
+    margin:0 auto
+}
+
+.release-container {
+	max-width: 600px;
+	margin-top:30px;
+	margin: 0 auto;
+	background: #fff;
+	font-family: 'Cherry Swash', cursive;
+	h1{
+		letter-spacing:3px;
+	}
+	h3{
+	   font-family: 'Buenard', serif;
+	}
+	.release-small {
+	}
+	.release-content {
+		font-family: 'Times New Roman'
+	}
+}
+
+.release-body {
+	background: #f2f2f2
 }

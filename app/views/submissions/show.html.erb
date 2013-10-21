@@ -1,40 +1,51 @@
+<% shownumber = false %>
+<% if @submission.result == "Passed" || @submission.result == "Incorrect Answer" %>
+<% shownumber = true %>
+<% end %>
 <% success_perc = @submission.pass*100/@submission.total %>
 <% fail_perc = 100 - success_perc %>
+
 <% content_for :head do %>
 	<%= javascript_include_tag 'submission' %>
 <% end %>
-
-<div class="container">
-	<div class="span8">
-		<h3> Submission </h3>
-		<p> <%= @submission.oj_problem.title %> </p>
-		<h4> Description: <span class="show-description">hide</span></h4>
+<div class="container submission-page">
+		<h3> Submission - <%= @submission.oj_problem.title %></h3>
+		<hr>
+		<h4> Description: <a><span class="show-description">hide</span></a></h4>
 		<p class="problem-description"> <%= @submission.oj_problem.description %></p>
+		<hr>
 		<div class="row">
-			<div class="span2">
-				<h4> Result: </h4>
+		<div class="span8">
+			<h4> Result: </h4>
+			<div id="submission-result">		
 				<%= @submission.result %>
 			</div>
-			<div class="span5">
-				<h4> Pass/Fail: </h4>
+			<div>
+				<h4> Testcase pass/fail: 
+				<% if shownumber %>
+				passed <%= @submission.pass %> of <%= @submission.total %> tests
+				<% end %>
+				</h4>
 				<% if @submission.result == "Pending" %>
 				<div class = "progress progress-striped active">
 					<div class="bar" style="width: 100%;">pending</div>
 				</div>
 				<% else %>
 				<div class = "progress">
-					<div class="bar bar-success" style="width: <%= success_perc %>%;">1</div>
-					<div class="bar bar-danger" style="width: <%= fail_perc %>%;">7</div>
+					<div class="bar bar-success" style="width: <%= success_perc %>%;"></div>
+					<div class="bar bar-danger" style="width: <%= fail_perc %>%;"></div>
+				</div>
+				<div id="submission-detail">
+				<a>show details</a>
+				<p><%= @submission.result_detail %></p>
 				</div>
 				<% end %>
 			</div>
 		</div>
-		<h4> View Submitted Code: </h4>
-		<pre class="prettyprint shadow submitted_code">
-		<%= @submission.code %>
-	    </pre>
+		</div>
+		<hr>
+		<h4> Submitted Code: <span class="toggle-dw"><i class="icon-certificate"></i></span></h4>
+		<div class="code-dark">
+		<pre class="prettyprint submitted_code"><%= @submission.code%></pre>
+	    </div>
 	</div>
-</div>
-<script>
-	prettyPrint();
-</script>

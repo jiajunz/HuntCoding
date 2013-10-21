@@ -1,13 +1,9 @@
-<div class="container">
-Show My Sub
+<div class="container showsub">
+<h3>
+All submissions to <%= @solvedproblem.submissions[0].oj_problem.title %>
+</h3>
+<hr>
 <% @solvedproblem.submissions.each do |s| %>
-<div class="shadow">
-<%= link_to "submission", "#" %>
-<pre class="prettyprint"><%= s.code %></pre>
-</div>
+<%= render partial: "submissions/submission_summary", locals: {submission: s} %>
 <% end %> 
 </div>
-<script>
-	prettyPrint();
-	//alert("good")
-</script>

@@ -13,10 +13,13 @@
 
 html {
   overflow-y: scroll;
+  height: 100%;
 }
 
 body {
   padding-top: 40px;
+  height: 100%;
+
 }
 
 section {
@@ -82,7 +85,7 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 5px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
@@ -217,7 +220,7 @@ section {
 /* code block */
 .submitted_code {
   max-width: 500px;
-  margin: 0 auto;
+  min-height:300px;
 }
 
 

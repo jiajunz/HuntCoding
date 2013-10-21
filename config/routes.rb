@@ -18,6 +18,7 @@ Jjywebsite::Application.routes.draw do
   resources :submissions, only: [:new, :create, :show, :index]
   get "common_pages/welcome"
   get "common_pages/home"
+  get '/release', to: 'common_pages#release'
   match '/signup', to: 'users#new', via:'get'
   match '/signin', to: 'sessions#new', via:'get'
   match '/signout', to: 'sessions#destroy', via:'delete'

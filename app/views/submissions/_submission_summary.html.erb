@@ -1,0 +1,9 @@
+<div class="submission-summary-each">
+<ul>
+Submission Date: <%= submission.created_at %> <br/>
+Language: <%= submission.language %> <br/>
+Result: <%= submission.result %> <br/>
+<%= link_to "View", submission_path(submission.id) %>                          
+</ul>
+<hr>
+</div>

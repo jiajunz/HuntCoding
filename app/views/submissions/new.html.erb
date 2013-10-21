@@ -2,11 +2,10 @@
 	<%= javascript_include_tag 'submission' %>
 <% end %>
 
-<div class="container">
+<div class="container submission-page">
  <h3> <%= @problem.title %> </h3> 
  <hr>
  <p>
- Description</br>
  <%= @problem.description.html_safe %>
  </p>
  <hr>
@@ -25,7 +24,6 @@
 <hr>
 <div id="hc-coding-panel-java">
 <%= form_for(:submission, url: submission_path) do |f| %>
-	 
       <%= f.label :"type your java code below" %>
       <%= f.text_field :language, value:"java",type:"hidden" %>
       <%= f.text_area :code, value:@problem.stub, class:"my-code-area", rows: "20",placeholder: "test" %>

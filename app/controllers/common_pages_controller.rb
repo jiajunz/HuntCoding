@@ -13,4 +13,8 @@ class CommonPagesController < ApplicationController
 
   def home
   end
+
+  def release
+    render layout: false
+  end
 end
