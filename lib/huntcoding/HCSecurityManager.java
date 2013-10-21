@@ -110,6 +110,9 @@ public class HCSecurityManager extends SecurityManager {
 	
 	@Override
 	public void checkPropertyAccess(String key){
+		if(key.equals("line.separator")){
+			return;
+		}
 		if(secret != null){
 			throw new SecurityException();
 		}
