@@ -16,7 +16,10 @@ class SubmissionsController < ApplicationController
 				solvedproblem.save
 			end
 		    if @submission.save 
-				@submission.judge
+		    	Thread.new do
+		    		@submission.judge
+		    		ActiveRecord::Base.connection.close
+		    	end
 				redirect_to @submission
 			end
 	end
