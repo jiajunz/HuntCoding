@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	$('.my-code-area').ace({ theme: 'chrome', lang: 'java'});
+	$("#hc-coding-panel-python").hide();
+
 	$(".show-description").click(function() {
 		if($(".problem-description").is(":visible")){
 			$(".problem-description").hide();
@@ -51,8 +54,7 @@ $(document).ready(function(){
 	});
 
     //init
-	$('.my-code-area').ace({ theme: 'chrome', lang: 'java'});
-	$("#hc-coding-panel-python").hide();
+	
 	var decorator = $('.my-code-area').data('ace');
 	if(decorator && decorator.editor){
 		var aceInstance = decorator.editor.ace;
@@ -60,12 +62,14 @@ $(document).ready(function(){
 		aceInstance.renderer.setHScrollBarAlwaysVisible(false);
 	}
 	// change submission result color 
-	if($("#submission-result").html().trim() == "Passed"){
-        $("#submission-result").css("color","#33CC66");
-	}else if($("#submission-result").html().trim() == "Pending"){
-		$("#submission-result").css("color","#33CCFF");
-	}else{
+	if($("#submission-result").html()!==undefined){
+		if( $("#submission-result").html().trim() == "Passed"){
+			$("#submission-result").css("color","#33CC66");
+		}else if($("#submission-result").html().trim() == "Pending"){
+			$("#submission-result").css("color","#33CCFF");
+		}else{
         $("#submission-result").css("color","#FF0033");
+    }
 	}
 	$("#submission-detail p").hide();
 	prettyPrint();
