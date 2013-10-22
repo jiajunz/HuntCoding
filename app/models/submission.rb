@@ -15,7 +15,8 @@ class Submission < ActiveRecord::Base
 		elsif language == "python"
 			judge_python(submdir)
 		end
-		
+		# remove the submission folder
+		FileUtils.rm_rf(submdir)
 	end
 	#handle_asynchronously :judge
 
@@ -72,10 +73,8 @@ class Submission < ActiveRecord::Base
 		   details = compile[ind,end_index]
 		   self.update(result: "Compile Failed", result_detail: details)
 		end
-		# remove the submission folder
-		FileUtils.rm_rf(submdir)
 	  end
-	  handle_asynchronously :judge_java
+	  #handle_asynchronously :judge_java
 
 	  def judge_python(submdir)
 	  	# copy the required files from db to the tmp folder
@@ -101,10 +100,9 @@ class Submission < ActiveRecord::Base
 		   	  self.solvedproblem.update(solved: true)
 		   end
 		   self.update(result: result, result_detail: details, pass: passed, total: total)
-		# remove the submission folder
-		FileUtils.rm_rf(submdir)
+		
 	  end
-	  handle_asynchronously :judge_python
+	  #handle_asynchronously :judge_python
 
 end
 
