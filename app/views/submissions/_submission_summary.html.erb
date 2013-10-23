@@ -1,4 +1,10 @@
-<div class="submission-summary-each">
+<% if submission.result == "Passed" %>
+<%  result="passed" %>
+<%   else  %>
+<%  result="failed" %>
+<% end %>
+<div class="submission-summary-each submission-lang-<%=submission.language %> 
+	 submission-result-<%=result %>" >
 <ul>
 Submission Date: <%= submission.created_at %> <br/>
 Language: <%= submission.language %> <br/>

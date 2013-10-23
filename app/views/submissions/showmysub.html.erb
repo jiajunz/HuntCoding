@@ -3,7 +3,66 @@
 All submissions to <%= @solvedproblem.submissions[0].oj_problem.title %>
 </h3>
 <hr>
+<span>
+  Show:
+  <span class="sub-checkbox-group">
+    Java
+   <input type="checkbox" class="css-checkbox" id="checkjava" checked="checked"/>
+   <label class="css-label" for="checkjava"></label>
+  </span>
+   <span class="sub-checkbox-group">
+    Python
+   <input type="checkbox" class="css-checkbox" id="checkpython" checked="checked"/>
+   <label class="css-label" for="checkpython"></label>
+  </span>
+  <span class="sub-checkbox-group">
+    Passed
+   <input type="checkbox" class="css-checkbox" id="checkpassed" checked="checked"/>
+   <label class="css-label" for="checkpassed"></label>
+  </span>
+  <span class="sub-checkbox-group">
+    Failed
+   <input type="checkbox" class="css-checkbox" id="checkfailed" checked="checked"/>
+   <label class="css-label" for="checkfailed"></label>
+  </span>
+</span>
+<hr>
 <% @solvedproblem.submissions.each do |s| %>
 <%= render partial: "submissions/submission_summary", locals: {submission: s} %>
 <% end %> 
+
+<script>
+	$("#checkjava").change(function(){
+		if($("#checkjava").prop("checked")){
+			$(".submission-lang-java").show();
+		}
+		else{
+			$(".submission-lang-java").hide();
+		}
+	});
+	$("#checkpython").change(function(){
+		if($("#checkpython").prop("checked")){
+			$(".submission-lang-python").show();
+		}
+		else{
+			$(".submission-lang-python").hide();
+		}
+	});
+	$("#checkpassed").change(function(){
+		if($("#checkpassed").prop("checked")){
+			$(".submission-result-passed").show();
+		}
+		else{
+			$(".submission-result-passed").hide();
+		}
+	});
+	$("#checkfailed").change(function(){
+		if($("#checkfailed").prop("checked")){
+			$(".submission-result-failed").show();
+		}
+	else{
+		$(".submission-result-failed").hide();
+	}
+	});	
+</script>
 </div>
