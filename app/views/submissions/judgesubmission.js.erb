@@ -1,0 +1,7 @@
+{
+	"id":<%= @submission.id %>,
+	"result":"<%= @submission.result %>",
+	"passed":<%= @submission.pass %>,
+	"total" : <%= @submission.total %>,
+	"detail": "<%= @submission.result_detail.to_json %>"
+}

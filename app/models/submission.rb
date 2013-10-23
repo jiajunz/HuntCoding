@@ -53,7 +53,7 @@ class Submission < ActiveRecord::Base
 		   # run the program
 		   test_result = `cd #{submdir.to_s}; java com.huntcoding.OJFrameWork 2>&1`
 		   # TODO error handling on this json parse fail or split fail
-		   json_result_str = test_result.split('\n').last
+		   json_result_str = test_result.split("\n").last
 		   json_result = JSON.parse(json_result_str)
 		   result = json_result["result"]
 		   passed = json_result["passed"]
@@ -89,7 +89,9 @@ class Submission < ActiveRecord::Base
 	  	solutionFile = File.join(submdir, 'usercode')
 	  	File.write(solutionFile, code)
 	  	# run
-	  	json_result_str = `cd #{submdir.to_s}; python HCDriver.py 2>&1`
+	  	test_result = `cd #{submdir.to_s}; python HCDriver.py 2>&1`
+	  	p test_result
+	  	json_result_str = test_result.split("\n").last
 	  	p json_result_str
 	  	json_result = JSON.parse(json_result_str)
 		   result = json_result["result"]

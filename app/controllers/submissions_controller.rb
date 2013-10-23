@@ -16,12 +16,18 @@ class SubmissionsController < ApplicationController
 				solvedproblem.save
 			end
 		    if @submission.save 
-		    	Thread.new do
-		    		@submission.judge
-		    		ActiveRecord::Base.connection.close
-		    	end
 				redirect_to @submission
 			end
+	end
+
+	def judgesubmission
+		@submission = Submission.find(params[:id])
+		@submission.judge
+		@submission = Submission.find(params[:id])
+		p "finished judge"
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def show

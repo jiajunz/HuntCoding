@@ -22,4 +22,5 @@
 //= require ace/mode-java
 //= require ace/mode-python
 //= require jquery-ace.min
+//= require common
 

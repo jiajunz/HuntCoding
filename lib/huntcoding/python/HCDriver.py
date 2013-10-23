@@ -43,15 +43,17 @@ signal.alarm(5)
 # compile and exec each piece of user code
 for usrcode in usercodes:
     local_env = {}
-    code = compile_restricted(usrcode,'<string>','exec')
     try:
+        code = compile_restricted(usrcode,'<string>','exec')
         exec(code ,hc_globals_copy, local_env)
     except Exception, e:
+        print "Catch exception"
         #traceback.print_exc(file = sys.stdout)
         judge_result["result"] = "Runtime Error"
         judge_result["passed"] = passed
-        judge_result["total"] = total;
+        judge_result["total"] = total
         judge_result["details"] = str(e)
+        print "\n"
         print json.dumps(judge_result)
         sys.exit(0)
         
@@ -71,10 +73,12 @@ except Exception, e:
     judge_result["passed"] = passed
     judge_result["total"] = total;
     judge_result["details"] = str(e)
+    print "\n"
     print json.dumps(judge_result)
     sys.exit(0)
 
 signal.alarm(0);
+print "\n"
 print result
 sys.exit(0)
 

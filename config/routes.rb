@@ -25,6 +25,7 @@ Jjywebsite::Application.routes.draw do
   match '/submissions/new/:id', to: 'submissions#new', via:'get', as: :newsub
   match '/submissions/:id', to: 'submissions#create', via: 'post'
   match '/mysubmission/:id', to: 'submissions#showmysub', via:'get', as: :mysub
+  match '/judgesubmission', to: 'submissions#judgesubmission', via:'post'
   get   '/submission/', to: 'submissions#showuser', as: :subuser
 
   

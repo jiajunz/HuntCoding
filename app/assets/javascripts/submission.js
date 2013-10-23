@@ -69,7 +69,7 @@ $(document).ready(function(){
 			$("#submission-result").css("color","#33CCFF");
 		}else{
         $("#submission-result").css("color","#FF0033");
-    }
+       }
 	}
 	$("#submission-detail p").hide();
 	prettyPrint();

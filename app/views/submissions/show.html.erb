@@ -21,25 +21,22 @@
 				<%= @submission.result %>
 			</div>
 			<div>
-				<h4> Testcase pass/fail: 
-				<% if shownumber %>
+				<div class="get-result">
+				<h4 id="pass-fail"> Testcase pass/fail: 
 				passed <%= @submission.pass %> of <%= @submission.total %> tests
-				<% end %>
 				</h4>
-				<% if @submission.result == "Pending" %>
-				<div class = "progress progress-striped active">
+			    </div>
+				<div class = "result-pending progress progress-striped active">
 					<div class="bar" style="width: 100%;">pending</div>
 				</div>
-				<% else %>
-				<div class = "progress">
+				<div class = "get-result progress">
 					<div class="bar bar-success" style="width: <%= success_perc %>%;"></div>
 					<div class="bar bar-danger" style="width: <%= fail_perc %>%;"></div>
 				</div>
-				<div id="submission-detail">
+				<div class="ger-result" id="submission-detail">
 				<a>show details</a>
 				<p><%= @submission.result_detail %></p>
 				</div>
-				<% end %>
 			</div>
 		</div>
 		</div>
@@ -49,3 +46,14 @@
 		<pre class="prettyprint submitted_code"><%= @submission.code%></pre>
 	    </div>
 	</div>
+
+	<% if @submission.result == "Pending" %>
+	    <script>
+	    run_judge_submission(<%= @submission.id %>);
+	   </script>
+	<% else %>
+	    <script>
+	    $(".result-pending").hide();
+	    </script>
+	<% end %>
+
